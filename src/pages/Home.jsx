@@ -3,6 +3,7 @@ import {  Link, useNavigate } from "react-router-dom";
 import "./Home.css"; 
 import TextBox01 from '../components/TextBox01';
 import Aside from '../components/Aside';
+import Button from "../ui/Button";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -104,11 +105,13 @@ export default function Home() {
         <TextBox01 />
 
         <div className="container-next">
-          <Link to="/versicherungs">
-            <button className="next_btn" onClick={handleNext}>
+            <Button
+              to="/versicherungs"
+              className="next_btn"
+              onClick={handleNext}
+            >
               <span>Weiter</span>
-            </button>
-          </Link>
+            </Button>
         </div>
       </div>
     </section>

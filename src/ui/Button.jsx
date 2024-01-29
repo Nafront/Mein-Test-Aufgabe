@@ -1,18 +1,13 @@
+// src/ui/Button.jsx
 import { Link } from "react-router-dom";
 import "./Button.css";
-// Button.jsx
-export default function Button({ onClick, children, to }) {
+
+export default function Button({ to, children }) {
   return (
     <div className="container-next">
-      {to ? (
-        <Link to={to} className="next-btn">
-          {children}
-        </Link>
-      ) : (
-        <button onClick={onClick} className="next-btn">
-          {children}
-        </button>
-      )}
+      <Link to={to} className="next-btn">
+        {children}
+      </Link>
     </div>
   );
 }

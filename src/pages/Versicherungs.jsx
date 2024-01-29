@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Versicherungs.css";
 import TextBox02 from "../components/TextBox02";
 import Aside from "../components/Aside";
 import Slider from "../components/Slider";
+import Button from "../ui/Button";
 
 export default function Versicherungs() {
   const [sliderValue, setSliderValue] = useState(100);
@@ -37,11 +38,9 @@ export default function Versicherungs() {
         <TextBox02 />
 
         <div className="container-next">
-          <Link to="tarif">
-            <button className="next_btn">
-              <span>Weiter</span>
-            </button>
-          </Link>
+          <Button to="tarif" className="next_btn">
+            <a>Weiter</a>
+          </Button>
         </div>
       </div>
     </section>
