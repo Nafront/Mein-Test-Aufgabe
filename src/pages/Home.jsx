@@ -21,6 +21,7 @@ export default function Home() {
       setGeburtsdatum(`${day}.${month}.${year}`); // Aktualisieren des Geburtsdatums im Context
       navigate("/versicherungs");
     }
+    console.log(geburtsdatum);
   };
 
   const validateInput = () => {
@@ -81,7 +82,11 @@ export default function Home() {
                 name="day"
                 placeholder="Tag"
                 value={day}
-                onChange={(e) => setDay(e.target.value)}
+                // onChange={(e) => setDay(e.target.value)}
+                onChange={(e) => {
+                  console.log("Day Input Value:", e.target.value); // Hier wird der Wert ausgegeben
+                  setDay(e.target.value);
+                }}
                 error={error}
               />
               <InputField

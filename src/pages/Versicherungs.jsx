@@ -19,57 +19,46 @@ export default function Versicherungs() {
   // console.log(sliderValue);
 
   const handleSubmit = async () => {
-    // Konvertierung des Geburtsdatums aus dem Context in ein Date-Objekt
-    const geburtsdatumParts = geburtsdatum.split(".");
-    const geburtsdatumDate = new Date(
-      geburtsdatumParts[2],
-      geburtsdatumParts[1] - 1,
-      geburtsdatumParts[0]
-    );
+    const dataToSend = {
+      geburtsdatum: `${geburtsdatum}`, // Annahme, dass geburtsdatum bereits im korrekten Format ist
+      versicherungssumme: sliderValue,
+    };
 
-    // Berechnung des Alters basierend auf dem Geburtsdatum
-    const heute = new Date();
-    let alter = heute.getFullYear() - geburtsdatumDate.getFullYear();
-    const m = heute.getMonth() - geburtsdatumDate.getMonth();
-    if (m < 0 || (m === 0 && heute.getDate() < geburtsdatumDate.getDate())) {
-      alter--;
-    }
-
-    // Überprüfung, ob das Alter zwischen 50 und 80 Jahren liegt
-    if (alter >= 50 && alter <= 80) {
-      const dataToSend = {
-        geburtsdatum: `${geburtsdatum.day}.${geburtsdatum.month}.${geburtsdatum.year}`,
-        versicherungssumme: sliderValue,
-      };
-
-      try {
-        const response = await fetch(
-          "https://t3a.hannoversche.de/api/v2/taa/quote",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dataToSend),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Netzwerkantwort war nicht ok.");
+    try {
+      const response = await fetch(
+        "https://t3a.hannoversche.de/api/v2/taa/quote",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
         }
+      );
 
-        const responseData = await response.json();
-        console.log(responseData);
-        navigate("/tarif"); // Navigieren Sie zur nächsten Seite nach erfolgreichem API-Aufruf
-      } catch (error) {
-        console.error("Fehler beim Senden der Daten:", error);
+      if (!response.ok) {
+        throw new Error("Netzwerkantwort war nicht ok.");
       }
-    } else {
-      console.error("Das Alter muss zwischen 50 und 80 Jahren liegen.");
-    }
+
+      const responseData = await response.json();
+      console.log(responseData);
+      
+      navigate("/tarif"); // Navigieren Sie zur nächsten Seite nach erfolgreichem API-Aufruf
+    } catch (error) {
+  console.error("Fehler beim Senden der Daten:", error);
+  if (error.response) {
+    // Der Server hat eine Antwort mit einem Fehlerstatus zurückgegeben
+    console.error("Serverantwort:", error.response.data);
+    console.error("Statuscode:", error.response.status);
+  } else if (error.request) {
+    // Der Request wurde gesendet, aber keine Antwort erhalten
+    console.error("Keine Antwort vom Server erhalten:", error.request);
+  } else {
+    // Ein Fehler beim Aufbau des Requests
+    console.error("Fehler beim Aufbau des Requests:", error.message);
+  }
+}
   };
-
-
 
   return (
     <section className="section_v">
