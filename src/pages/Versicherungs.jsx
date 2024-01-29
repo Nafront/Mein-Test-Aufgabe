@@ -52,7 +52,7 @@ export default function Versicherungs() {
       }
 
       const responseData = await response.json();
-      console.log('responseData : ' , responseData);
+      // console.log('responseData : ' , responseData);
 
       navigate("/tarif"); 
     } catch (error) {
