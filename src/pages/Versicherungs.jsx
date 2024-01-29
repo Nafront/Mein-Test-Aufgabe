@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Versicherungs.css";
 import TextBox02 from "../components/TextBox02";
 import Aside from "../components/Aside";
+import Slider from "../components/Slider";
 
 export default function Versicherungs() {
   const [sliderValue, setSliderValue] = useState(100);
@@ -11,23 +12,6 @@ export default function Versicherungs() {
        navigate("/");
      }
 
-  const handleSliderChange = (event) => {
-    const value = event.target.value;
-    setSliderValue(value);
-  };
-
-    const handleSliderBlur = () => {
-      // Runden auf den nächsten Schritt von 500
-      const roundedValue = Math.round(sliderValue / 500) * 500;
-
-      if (roundedValue < 4000) {
-        setSliderValue(4000);
-      } else if (roundedValue > 15000) {
-        setSliderValue(15000);
-      } else {
-        setSliderValue(roundedValue);
-      }
-    };
   console.log(sliderValue);
 
   return (
@@ -35,7 +19,7 @@ export default function Versicherungs() {
       <Aside />
       <div className="container_v">
         <p>
-         <button onClick={navigationHandler}>Back</button>
+          <button onClick={navigationHandler}>Back</button>
         </p>
         <header className="title">
           <h1>
@@ -47,22 +31,7 @@ export default function Versicherungs() {
             <span>{sliderValue} </span>
           </div>
           <div className="field">
-            <input
-              type="range"
-              min="4000"
-              max="15000"
-              step="500"
-              value={sliderValue}
-              onChange={handleSliderChange}
-              onMouseUp={handleSliderBlur}
-              className="custom-slider"
-
-              //   defaultValue="50"
-            />
-            <div className="zahl_wrapper">
-              <span className="value left">4000 €</span>
-              <span className="value right">15000 €</span>
-            </div>
+            <Slider sliderValue={sliderValue} setSliderValue={setSliderValue} />
           </div>
         </div>
         <TextBox02 />

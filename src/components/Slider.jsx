@@ -1,41 +1,43 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
+import './Slider.css';
 
-const marks = [
-  {
-    value: 4000,
-    label: "4000",
-  },
-  {
-    value: 20,
-    label: "20°C",
-  },
-  {
-    value: 37,
-    label: "37°C",
-  },
-  {
-    value: 100,
-    label: "100°C",
-  },
-];
 
-function valuetext(value) {
-  return `${value}°C`;
-}
 
-export default function DiscreteSliderLabel() {
+
+
+export default function SliderComponent({ sliderValue, setSliderValue }) {
+  const handleSliderChange = (event) => {
+    const value = event.target.value;
+    setSliderValue(value);
+  };
+
+  const handleSliderBlur = () => {
+    // Runden auf den nächsten Schritt von 500
+    const roundedValue = Math.round(sliderValue / 500) * 500;
+    if (roundedValue < 4000) {
+      setSliderValue(4000);
+    } else if (roundedValue > 15000) {
+      setSliderValue(15000);
+    } else {
+      setSliderValue(roundedValue);
+    }
+  };
+
   return (
-    <Box sx={{ width: 300 }}>
-      <Slider
-        aria-label="Always visible"
-        defaultValue={80}
-        getAriaValueText={valuetext}
-        step={10}
-        marks={marks}
-        valueLabelDisplay="on"
+    <div className="field">
+      <input
+        type="range"
+        min="4000"
+        max="15000"
+        step="500"
+        value={sliderValue}
+        onChange={handleSliderChange}
+        onMouseUp={handleSliderBlur}
+        className="custom-slider"
       />
-    </Box>
+      <div className="zahl_wrapper">
+        <span className="value left">4000 €</span>
+        <span className="value right">15000 €</span>
+      </div>
+    </div>
   );
 }
