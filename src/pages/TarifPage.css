@@ -1,0 +1,159 @@
+.tarif {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  background-color: #ffffff;
+  color: #575f7b;
+}
+
+.container_t {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  min-width: 50rem;
+  margin: 0 auto;
+}
+.container_t .wrapper {
+  border-radius: 10px;
+  background-color: #eff0f2;
+  padding: 1rem;
+}
+.header_t {
+  margin-top: 5rem;
+  padding: 1rem;
+}
+.header_t > h2 {
+  margin: auto;
+}
+.header_t h4 {
+  margin: auto;
+}
+
+.article_t_1 {
+  border-radius: 10px 10px 0 0;
+}
+
+.option_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.option_content {
+  display: flex;
+  flex-direction: column;
+}
+.options {
+  height: 3rem;
+  width: 20rem;
+  border: solid 2px #405680;
+  border-radius: 5px;
+  font-size: 1rem;
+    color: #425781;
+
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+label {
+  text-align: start;
+  color: #575f7b;
+  font-weight: bold;
+  padding: 5px 5px 5px 0;
+}
+.input_date {
+  height: 3rem;
+  width: 20rem;
+  border: solid 2px #405680;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  color: #425781;
+}
+
+.article_t_2 {
+  /* background-color: #F6F7F9; */
+  background-color: #012d5d;
+  margin-top: 2rem;
+  border-radius: 10px;
+  padding: 2.5rem;
+}
+.article_t_2_container {
+  /* border:solid ; */
+}
+
+.tarif_btn button {
+  min-height: 3rem;
+  min-width: 100%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 4px;
+  background: #e35d50;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.container-next {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 5rem;
+  transition: opacity 0.4s, height 0.2s;
+}
+
+.checkbox_container{
+ margin-bottom: 1rem;
+
+}
+.checkbox_container .btn_check {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  line-height: 0;
+  color: white;
+  font-size: 1rem;
+}
+
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+
+}
+.line .span_1 {
+  border-bottom: solid ;
+  width: 100%;
+}
+.line .span_2 {
+  border-bottom: solid ;
+  width: 100%;
+}
+
+.btn_an {
+  min-height: 3rem;
+  min-width: 100%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  color: #e35d50;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.btn_an_wrapper p {
+  font-size: .8rem;
+}

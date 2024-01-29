@@ -1,0 +1,30 @@
+.next-btn {
+  min-height: 3rem;
+  min-width: 15rem;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 4px;
+  background: #e35d50;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.container-next {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 5rem;
+  transition: opacity 0.4s, height 0.2s;
+}
+
+.next-btn:hover {
+  box-shadow: var(--next-btn-hover-shadow);
+  transform: translateY(-2px);
+  opacity: 1;
+  transition: transform 0.2s ease-in-out;
+}

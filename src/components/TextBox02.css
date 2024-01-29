@@ -1,0 +1,33 @@
+
+/* ======================= Text box ====================== */
+.text-box {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 5rem;
+}
+
+.text-container {
+  display: flex;
+  /* gap: 1rem; */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.box-avatar {
+  display: inline-flex;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+.box-container {
+  text-align: left;
+  font-size: 1.1rem;
+  background-color: #f6f7f9;
+  border-radius: 0 15px 15px 15px;
+  padding: 1rem;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  right: 0;
+}

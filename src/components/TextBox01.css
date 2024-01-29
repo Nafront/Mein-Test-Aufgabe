@@ -1,0 +1,38 @@
+
+.text-box {
+  display: flex;
+  /* flex-direction: rw; */
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.text-container {
+  display: flex;
+  /* flex-direction: column; */
+  /* background-color: #f8f9f9; */
+  /* align-self:center; */
+  gap: 1rem;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  
+}
+
+.box-avatar {
+  display: inline-flex;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+
+.box-container {
+  text-align: left;
+  font-size: 1.1rem;
+  background-color: #F6F7F9;
+  border-radius:0 15px 15px 15px;
+  padding: 1rem;
+    margin-bottom: 3rem;
+
+}
+
