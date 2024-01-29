@@ -11,5 +11,4 @@ export default function InputField ({ type, name, placeholder, value, onChange }
       onChange={onChange}
     />
   );
-};
-
+}

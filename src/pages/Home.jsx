@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import TextBox01 from "../components/TextBox01";
@@ -12,6 +12,7 @@ export default function Home() {
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [error, setError] = useState("");
+  
 
   const handleNext = () => {
     if (validateInput()) {
@@ -72,6 +73,7 @@ export default function Home() {
           <div className="form-container">
             <div className="form-element">
               <InputField
+              className='in_1'
                 type="number"
                 name="day"
                 placeholder="Tag"
@@ -79,6 +81,7 @@ export default function Home() {
                 onChange={(e) => setDay(e.target.value)}
               />
               <InputField
+              className='in_1'
                 type="number"
                 name="month"
                 placeholder="Monat"
@@ -86,6 +89,7 @@ export default function Home() {
                 onChange={(e) => setMonth(e.target.value)}
               />
               <InputField
+              className='in_2'
                 type="number"
                 name="year"
                 placeholder="Jahr"
