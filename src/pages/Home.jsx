@@ -20,8 +20,8 @@ export default function Home() {
     if (validateInput()) {
       setGeburtsdatum(`${day}.${month}.${year}`); // Aktualisieren des Geburtsdatums im Context
       navigate("/versicherungs");
+      console.log(geburtsdatum);
     }
-    console.log(geburtsdatum);
   };
 
   const validateInput = () => {
@@ -33,28 +33,36 @@ export default function Home() {
     const numericDay = parseInt(day, 10);
     const numericMonth = parseInt(month, 10);
     const numericYear = parseInt(year, 10);
+    const userBirthdate = new Date(numericYear, numericMonth - 1, numericDay);
 
+    // Überprüfung auf ungültige Daten (z.B. 30. Februar)
     if (
-      isNaN(numericDay) ||
-      isNaN(numericMonth) ||
-      isNaN(numericYear) ||
-      numericDay < 1 ||
-      numericDay > 31 ||
-      numericMonth < 1 ||
-      numericMonth > 12 ||
-      numericYear < 1900
+      userBirthdate.getFullYear() !== numericYear ||
+      userBirthdate.getMonth() + 1 !== numericMonth ||
+      userBirthdate.getDate() !== numericDay
     ) {
-      // setError("Ungültige Eingabe. Bitte überprüfe die Daten.");
       setError("Bitte geben Sie ein gültiges Datum im Format TT.MM.JJJJ ein.");
       return false;
     }
-    // Berechung des Alters und Überprüfung, ob es im gültigen bereich liegt
-    const currentDate = new Date();
-    const userBirthdate = new Date(
-      `${numericYear}-${numericMonth}-${numericDay}`
-    );
+    // const currentDate = new Date();
+    // const userBirthdate = new Date(
+    //   `${numericYear}-${numericMonth}-${numericDay}`
+    // );
 
-    const userAge = currentDate.getFullYear() - userBirthdate.getFullYear();
+    // const userAge = currentDate.getFullYear() - userBirthdate.getFullYear();
+
+    // Aktuelles Datum erstellen
+    const currentDate = new Date();
+    // Das Alter des Benutzers berechnen, indem das Geburtsjahr subtrahiert wird
+    let userAge = currentDate.getFullYear() - userBirthdate.getFullYear();
+    // Überprüfen, ob der Geburtstag dieses Jahr bereits vergangen ist
+    const isBirthdayPassedThisYear =
+      currentDate.getMonth() > userBirthdate.getMonth() ||
+      (currentDate.getMonth() === userBirthdate.getMonth() &&
+        currentDate.getDate() >= userBirthdate.getDate());
+    if (!isBirthdayPassedThisYear) {
+      userAge--; // Wenn der Geburtstag dieses Jahr noch nicht war, ein Jahr abziehen
+    }
 
     if (userAge < 50 || userAge > 80) {
       setError("Das Geburtsdatum muss zwischen 50 und 80 Jahren liegen.");

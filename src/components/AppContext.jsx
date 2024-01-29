@@ -10,13 +10,16 @@ export const AppProvider = ({ children }) => {
     month: "",
     year: "",
   });
-  const [sliderValue, setSliderValue] = useState(100);
+  const [sliderValue, setSliderValue] = useState(4000);
+  const [tarif, setTarif] = useState(null);
 
   const value = {
     geburtsdatum,
     setGeburtsdatum,
     sliderValue,
     setSliderValue,
+    tarif,
+    setTarif,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

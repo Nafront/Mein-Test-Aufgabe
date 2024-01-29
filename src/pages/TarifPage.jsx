@@ -1,12 +1,22 @@
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from '../components/AppContext'; 
 import Aside from "../components/Aside";
 import "./TarifPage.css";
 
 export default function TarifPage() {
-    const navigate = useNavigate();
-    function navigationHandler() {
-      navigate("/");
-    }
+    const { tarif } = useAppContext();
+
+
+  const navigate = useNavigate();
+  function navigationHandler() {
+    navigate("/");
+  }
+
+  // Funktion zum Speichern des Tarifs
+  // const saveTarif = (tarifData) => {
+  //   setTarif(tarifData);
+  // };
+  
   return (
     <section className="tarif">
       <Aside />
@@ -15,6 +25,15 @@ export default function TarifPage() {
           <button onClick={navigationHandler}>Back</button>
         </p>
         <header className="header_t">
+          <div>
+            <h1>
+              {tarif ? (
+                <p>Monatlicher Tarif: {tarif} €</p>
+              ) : (
+                <p>Keine Tarifinformationen verfügbar.</p>
+              )}
+            </h1>
+          </div>
           <h2>61,93 €</h2>
           <h4>Monatlich</h4>
         </header>
@@ -75,8 +94,13 @@ export default function TarifPage() {
                 <p className="span_1"></p>oder<p className="span_2"></p>
               </div>
               <div className="btn_an_wrapper">
-                <button className="btn_an">Unverbindliches Angebot anfordern</button>
-              <p >Nochmal darüber schlafen? Wie schicken Ihr Angebot auch noch Hause - per Post oder E-Mail</p>
+                <button className="btn_an">
+                  Unverbindliches Angebot anfordern
+                </button>
+                <p>
+                  Nochmal darüber schlafen? Wie schicken Ihr Angebot auch noch
+                  Hause - per Post oder E-Mail
+                </p>
               </div>
             </div>
           </article>

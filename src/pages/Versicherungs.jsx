@@ -8,7 +8,6 @@ import Button from "../ui/Button";
 import "./Versicherungs.css";
 
 export default function Versicherungs() {
-  // const [sliderValue, setSliderValue] = useState(100);
   const { geburtsdatum, sliderValue, setSliderValue } = useAppContext();
 
   const navigate = useNavigate();
@@ -16,17 +15,29 @@ export default function Versicherungs() {
     navigate("/");
   }
 
-  // console.log(sliderValue);
 
   const handleSubmit = async () => {
-    const dataToSend = {
-      geburtsdatum: `${geburtsdatum}`, // Annahme, dass geburtsdatum bereits im korrekten Format ist
-      versicherungssumme: sliderValue,
-    };
+     const dataToSend = {
+       tarif: {
+         name: "sterbegeld",
+       },
+       versicherungsnehmer: {
+         geburtsdatum: geburtsdatum, // Annahme, dass geburtsdatum bereits im korrekten Format ist, z.B. "18.02.1973"
+         geschlecht: "m", // Sie müssen eine Möglichkeit hinzufügen, das Geschlecht zu erfassen und hier einzufügen
+       },
+       vertragsdaten: {
+         endalter: 85,
+         versicherungsbeginn: "01.10.2023", // Dies sollte dynamisch gesetzt oder vom Benutzer ausgewählt werden können
+         versicherungssumme: sliderValue, // Verwendung des Wertes aus dem Slider
+         zahlungsweise: "monatlich", // Dies könnte auch dynamisch gesetzt oder vom Benutzer ausgewählt werden
+       },
+     };
+    // console.log('dataToSend: ', dataToSend);
+    // console.log("tarif: ", dataToSend.tarif);
 
+    const url =  "https://t3a.hannoversche.de/api/v2/taa/quote";
     try {
-      const response = await fetch(
-        "https://t3a.hannoversche.de/api/v2/taa/quote",
+      const response = await fetch( url,
         {
           method: "POST",
           headers: {
@@ -41,9 +52,9 @@ export default function Versicherungs() {
       }
 
       const responseData = await response.json();
-      console.log(responseData);
-      
-      navigate("/tarif"); // Navigieren Sie zur nächsten Seite nach erfolgreichem API-Aufruf
+      console.log('responseData : ' , responseData);
+
+      navigate("/tarif"); 
     } catch (error) {
   console.error("Fehler beim Senden der Daten:", error);
   if (error.response) {
