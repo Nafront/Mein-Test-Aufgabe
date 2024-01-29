@@ -1,9 +1,10 @@
-import  { useState } from "react";
-import {  Link, useNavigate } from "react-router-dom";
-import "./Home.css"; 
-import TextBox01 from '../components/TextBox01';
-import Aside from '../components/Aside';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./Home.css";
+import TextBox01 from "../components/TextBox01";
+import Aside from "../components/Aside";
 import Button from "../ui/Button";
+import InputField from "../components/InputField";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -14,8 +15,7 @@ export default function Home() {
 
   const handleNext = () => {
     if (validateInput()) {
-      navigate(`/naechste-seite?day=${day}&month=${month}&year=${year}`);
-      // navigate("/versicherungs");
+      navigate("/versicherungs");
     }
   };
 
@@ -71,27 +71,25 @@ export default function Home() {
         <form className="form">
           <div className="form-container">
             <div className="form-element">
-              <input
+              <InputField
                 type="number"
-                name=""
-                className="input in_1"
+                name="day"
                 placeholder="Tag"
+                value={day}
                 onChange={(e) => setDay(e.target.value)}
               />
-              <input
+              <InputField
                 type="number"
-                name=""
-                className="input in_1"
+                name="month"
                 placeholder="Monat"
-                min="1"
-                max="12"
+                value={month}
                 onChange={(e) => setMonth(e.target.value)}
               />
-              <input
+              <InputField
                 type="number"
-                name=""
-                className="input in_2"
+                name="year"
                 placeholder="Jahr"
+                value={year}
                 onChange={(e) => setYear(e.target.value)}
               />
             </div>
@@ -105,16 +103,11 @@ export default function Home() {
         <TextBox01 />
 
         <div className="container-next">
-            <Button
-              to="/versicherungs"
-              className="next_btn"
-              onClick={handleNext}
-            >
-              <span>Weiter</span>
-            </Button>
+          <Button to="/versicherungs" className="next_btn" onClick={handleNext}>
+            <span>Weiter</span>
+          </Button>
         </div>
       </div>
     </section>
   );
 }
-
