@@ -1,21 +1,24 @@
-import { useState, } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
 import TextBox01 from "../components/TextBox01";
 import Aside from "../components/Aside";
 import Button from "../ui/Button";
 import InputField from "../components/InputField";
+import { useAppContext } from "../components/AppContext";
 
 export default function Home() {
+  const { geburtsdatum, setGeburtsdatum } = useAppContext(); // Zugriff auf Zustände und Funktionen
+
   const navigate = useNavigate();
   const [day, setDay] = useState("");
   const [month, setMonth] = useState("");
   const [year, setYear] = useState("");
   const [error, setError] = useState("");
-  
 
   const handleNext = () => {
     if (validateInput()) {
+      setGeburtsdatum(`${day}.${month}.${year}`); // Aktualisieren des Geburtsdatums im Context
       navigate("/versicherungs");
     }
   };
@@ -25,7 +28,6 @@ export default function Home() {
       setError("Bitte fülle alle Felder aus.");
       return false;
     }
-
 
     const numericDay = parseInt(day, 10);
     const numericMonth = parseInt(month, 10);
@@ -45,7 +47,7 @@ export default function Home() {
       setError("Bitte geben Sie ein gültiges Datum im Format TT.MM.JJJJ ein.");
       return false;
     }
-// Berechung des Alters und Überprüfung, ob es im gültigen bereich liegt
+    // Berechung des Alters und Überprüfung, ob es im gültigen bereich liegt
     const currentDate = new Date();
     const userBirthdate = new Date(
       `${numericYear}-${numericMonth}-${numericDay}`
