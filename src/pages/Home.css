@@ -52,20 +52,13 @@
   /* width: 56rem; */
   gap: 1.6rem;
 }
-.input-focused {
-  background-color: #f0f0f0; /* رنگ دلخواه برای حالت فوکوس */
-}
-.in_1 {
-  flex: 2;
-  max-width: 6em;
-  min-width: 6em;
-  /* color: #575f7b; */
-}
-.in_2 {
-  max-width: 18rem;
-  min-width: 18rem;
-  /* color: #575f7b; */
-}
+/* .input-focused {
+  background-color: #f0f0f0;
+  border: solid 2px rgb(237, 49, 49);
+} */
+
+
+/* ===================================== */
 
 .button {
   min-height: 3rem;
@@ -92,9 +85,12 @@
 }
 
 .error-message {
-  color: red;
+  color: #ff3e2c;
   font-size: 1.2rem;
 }
+
+
+
 /* ============================ button ====================== */
 .next_btn {
   min-height: 3rem;

@@ -26,6 +26,7 @@ export default function Home() {
       return false;
     }
 
+
     const numericDay = parseInt(day, 10);
     const numericMonth = parseInt(month, 10);
     const numericYear = parseInt(year, 10);
@@ -40,10 +41,11 @@ export default function Home() {
       numericMonth > 12 ||
       numericYear < 1900
     ) {
-      setError("Ungültige Eingabe. Bitte überprüfe die Daten.");
+      // setError("Ungültige Eingabe. Bitte überprüfe die Daten.");
+      setError("Bitte geben Sie ein gültiges Datum im Format TT.MM.JJJJ ein.");
       return false;
     }
-
+// Berechung des Alters und Überprüfung, ob es im gültigen bereich liegt
     const currentDate = new Date();
     const userBirthdate = new Date(
       `${numericYear}-${numericMonth}-${numericDay}`
@@ -73,28 +75,28 @@ export default function Home() {
           <div className="form-container">
             <div className="form-element">
               <InputField
-              className='in_1'
                 type="number"
                 name="day"
                 placeholder="Tag"
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
+                error={error}
               />
               <InputField
-              className='in_1'
                 type="number"
                 name="month"
                 placeholder="Monat"
                 value={month}
                 onChange={(e) => setMonth(e.target.value)}
+                error={error}
               />
               <InputField
-              className='in_2'
                 type="number"
                 name="year"
                 placeholder="Jahr"
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
+                error={error}
               />
             </div>
           </div>
