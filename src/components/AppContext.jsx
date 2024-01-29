@@ -12,6 +12,7 @@ export const AppProvider = ({ children }) => {
   });
   const [sliderValue, setSliderValue] = useState(4000);
   const [tarif, setTarif] = useState(null);
+  const [apiResponse, setApiResponse] = useState({}); // Zustand für die API-Antwort
 
   const value = {
     geburtsdatum,
@@ -20,6 +21,8 @@ export const AppProvider = ({ children }) => {
     setSliderValue,
     tarif,
     setTarif,
+    apiResponse,
+    setApiResponse,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

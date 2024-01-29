@@ -4,8 +4,7 @@ import Aside from "../components/Aside";
 import "./TarifPage.css";
 
 export default function TarifPage() {
-    const { tarif } = useAppContext();
-
+  const { apiResponse } = useAppContext();
 
   const navigate = useNavigate();
   function navigationHandler() {
@@ -16,7 +15,9 @@ export default function TarifPage() {
   // const saveTarif = (tarifData) => {
   //   setTarif(tarifData);
   // };
-  
+  // Zugriff auf den monatlichen Beitrag
+  const monatlicherBeitrag =
+    apiResponse.hauptprodukt?.sterbegeld?.beitraege?.monatlich?.netto;
   return (
     <section className="tarif">
       <Aside />
@@ -27,11 +28,10 @@ export default function TarifPage() {
         <header className="header_t">
           <div>
             <h1>
-              {tarif ? (
-                <p>Monatlicher Tarif: {tarif} €</p>
-              ) : (
-                <p>Keine Tarifinformationen verfügbar.</p>
-              )}
+              <h2>
+                Monatlicher Beitrag:{" "}
+                {monatlicherBeitrag ? `${monatlicherBeitrag} €` : "Lädt..."}
+              </h2>
             </h1>
           </div>
           <h2>61,93 €</h2>

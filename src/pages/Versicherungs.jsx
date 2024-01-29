@@ -8,7 +8,7 @@ import Button from "../ui/Button";
 import "./Versicherungs.css";
 
 export default function Versicherungs() {
-  const { geburtsdatum, sliderValue, setSliderValue } = useAppContext();
+  const { geburtsdatum, sliderValue, setSliderValue, setApiResponse } =  useAppContext();
 
   const navigate = useNavigate();
   function navigationHandler() {
@@ -37,15 +37,13 @@ export default function Versicherungs() {
 
     const url =  "https://t3a.hannoversche.de/api/v2/taa/quote";
     try {
-      const response = await fetch( url,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(dataToSend),
-        }
-      );
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      });
 
       if (!response.ok) {
         throw new Error("Netzwerkantwort war nicht ok.");
@@ -54,7 +52,10 @@ export default function Versicherungs() {
       const responseData = await response.json();
       // console.log('responseData : ' , responseData);
 
-      navigate("/tarif"); 
+      // Speichern Sie die API-Antwort im globalen Zustand/Context
+      setApiResponse(responseData);
+
+      navigate("/tarif");
     } catch (error) {
   console.error("Fehler beim Senden der Daten:", error);
   if (error.response) {
