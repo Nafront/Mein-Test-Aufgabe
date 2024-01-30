@@ -94,7 +94,7 @@ export default function Home() {
           <div className="form-container">
             <div className="form-element">
               <InputField
-                type="text"
+                type="number"
                 name="day"
                 placeholder="Tag"
                 value={formData.day}
@@ -102,7 +102,7 @@ export default function Home() {
                 error={error}
               />
               <InputField
-                type="text"
+                type="number"
                 name="month"
                 placeholder="Monat"
                 value={formData.month}
@@ -110,7 +110,7 @@ export default function Home() {
                 error={error}
               />
               <InputField
-                type="text"
+                type="number"
                 name="year"
                 placeholder="Jahr"
                 value={formData.year}
