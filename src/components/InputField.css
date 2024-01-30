@@ -17,6 +17,9 @@
   color: #2e4674;
 }
 
+.input:hover{
+  text-decoration: none;
+}
 .input:nth-of-type(3) {
   flex-basis: 100px;
 }

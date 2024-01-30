@@ -8,23 +8,34 @@ import InputField from "../components/InputField";
 import { useAppContext } from "../components/AppContext";
 
 export default function Home() {
-  const { geburtsdatum, setGeburtsdatum } = useAppContext(); // Zugriff auf Zustände und Funktionen
-
+  const { setGeburtsdatum, error, setError } = useAppContext();
   const navigate = useNavigate();
-  const [day, setDay] = useState("");
-  const [month, setMonth] = useState("");
-  const [year, setYear] = useState("");
-  const [error, setError] = useState("");
+
+  const [formData, setFormData] = useState({
+    day: "",
+    month: "",
+    year: "",
+  });
+   
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    };
 
   const handleNext = () => {
     if (validateInput()) {
-      setGeburtsdatum(`${day}.${month}.${year}`); // Aktualisieren des Geburtsdatums im Context
+      const { day, month, year } = formData;
+      setGeburtsdatum(`${day}.${month}.${year}`);
+
       navigate("/versicherungs");
-      console.log(geburtsdatum);
     }
   };
 
   const validateInput = () => {
+    const { day, month, year } = formData;
     if (!day || !month || !year) {
       setError("Bitte fülle alle Felder aus.");
       return false;
@@ -44,12 +55,6 @@ export default function Home() {
       setError("Bitte geben Sie ein gültiges Datum im Format TT.MM.JJJJ ein.");
       return false;
     }
-    // const currentDate = new Date();
-    // const userBirthdate = new Date(
-    //   `${numericYear}-${numericMonth}-${numericDay}`
-    // );
-
-    // const userAge = currentDate.getFullYear() - userBirthdate.getFullYear();
 
     // Aktuelles Datum erstellen
     const currentDate = new Date();
@@ -74,7 +79,10 @@ export default function Home() {
   };
 
   return (
-    <section id="section_geburt">
+    <section
+      id="section_geburt"
+      // style={{ padding: "20px" }}
+    >
       <Aside />
       <div className="container">
         <div className="headline">
@@ -86,31 +94,27 @@ export default function Home() {
           <div className="form-container">
             <div className="form-element">
               <InputField
-                type="number"
+                type="text"
                 name="day"
                 placeholder="Tag"
-                value={day}
-                // onChange={(e) => setDay(e.target.value)}
-                onChange={(e) => {
-                  console.log("Day Input Value:", e.target.value); // Hier wird der Wert ausgegeben
-                  setDay(e.target.value);
-                }}
+                value={formData.day}
+                onChange={handleInputChange}
                 error={error}
               />
               <InputField
-                type="number"
+                type="text"
                 name="month"
                 placeholder="Monat"
-                value={month}
-                onChange={(e) => setMonth(e.target.value)}
+                value={formData.month}
+                onChange={handleInputChange}
                 error={error}
               />
               <InputField
-                type="number"
+                type="text"
                 name="year"
                 placeholder="Jahr"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
+                value={formData.year}
+                onChange={handleInputChange}
                 error={error}
               />
             </div>

@@ -34,6 +34,17 @@
 
 .ihr_bedarf {
 }
+.aside_icon_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Cilock {
+  font-size: 1.4rem;
+  color: #b1b9c3;
+}
+
 .ihr_bedarf h4 {
   color: #3db7e4;
 }

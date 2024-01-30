@@ -5,13 +5,21 @@
   font-family: Roboto, sans-serif;
   background-color: #ffffff;
   color: #575f7b;
+  margin: 0;
 }
 
 .container_v {
-  /* display: flex; */
   flex-direction: column;
   justify-content: center;
   width: 100%;
+}
+
+.icon_wrapper{
+  margin: 2rem ;
+}
+.back_icon{
+  font-size: 1.8rem;
+  font-weight: 2800;
 }
 .title {
   text-align: center;

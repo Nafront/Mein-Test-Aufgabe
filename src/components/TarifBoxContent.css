@@ -1,0 +1,138 @@
+.box_section {
+  background-color: #eff0f2;
+  max-width: 50rem;
+  padding: 1rem;
+  border-radius: 10px;
+  
+}
+
+.article_t_1 {
+  border-radius: 10px 10px 0 0;
+}
+.header_article > h1 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.header_article > p {
+  font-weight: ;
+}
+.header_article > p > span {
+  font-weight: bold;
+  
+}
+
+.option_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.option_content {
+  display: flex;
+  flex-direction: column;
+}
+.options {
+  height: 3rem;
+  width: 20rem;
+  border: solid 2px #405680;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #425781;
+  padding: 0 1rem;
+}
+.date {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+label {
+  text-align: start;
+  color: #575f7b;
+  font-weight: bold;
+  padding: 5px 5px 5px 0;
+}
+.input_date {
+  height: 3rem;
+  width: 20rem;
+  border: solid 2px #405680;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  color: #425781;
+  padding: 0 1rem;
+}
+
+.article_t_2 {
+  /* background-color: #F6F7F9; */
+  background-color: #012d5d;
+  margin-top: 2rem;
+  border-radius: 10px;
+  padding: 2.5rem;
+}
+.article_t_2_container {
+  /* border:solid ; */
+}
+
+.container-next {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 5rem;
+  transition: opacity 0.4s, height 0.2s;
+}
+
+.checkbox_container {
+  margin-bottom: 1rem;
+}
+.checkbox_container .btn_check {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  line-height: 0;
+  color: white;
+  font-size: 1rem;
+}
+
+.icon_check{
+  font-size: 1.4rem;
+  color: #3DB7E4;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.line .span_1 {
+  border-bottom: solid #1C5287;
+  width: 100%;
+}
+ .oder{
+color: #1C5287;
+}
+.line .span_2 {
+  border-bottom: solid #1C5287;
+  width: 100%;
+}
+
+.btn_an {
+  min-height: 3rem;
+  min-width: 100%;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  color: #e35d50;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.btn_an_wrapper p {
+  font-size: 0.8rem;
+  color: #215283;
+}

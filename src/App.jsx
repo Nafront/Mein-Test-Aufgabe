@@ -11,8 +11,7 @@ function App() {
         <Route path="/" element={<RootLayout />}>
           <Route index element={<Home />} />
           <Route path="versicherungs" element={<Versicherungs />} />
-          <Route path="versicherungs/tarif" element={<TarifPage />} />
-          <Route path="/tarif" element={<TarifPage />} />
+          <Route path="*" element={<TarifPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

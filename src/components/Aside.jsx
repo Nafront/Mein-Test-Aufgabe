@@ -2,6 +2,8 @@ import "./Aside.css";
 import { PiPhoneCall } from "react-icons/pi";
 import { MdPermIdentity } from "react-icons/md";
 import { SlArrowRight } from "react-icons/sl";
+import { CiLock } from "react-icons/ci";
+
 
 
 
@@ -25,15 +27,26 @@ export default function Aside() {
 
         <article className="article_a">
           <div className="ihr_bedarf">
-            <h4>Ihr Bedarf</h4>
+            <div className="aside_icon_wrapper">
+              <h4>Ihr Bedarf</h4>
+            </div>
+
             <div className="line line_1"></div>
           </div>
           <div>
-            <h4 className="title_t">Ihr Preis</h4>
+            <div className="aside_icon_wrapper">
+              <h4 className="title_t">Ihr Preis</h4>
+              <CiLock className="Cilock" />
+            </div>
+
             <div className="line line_2"></div>
           </div>
           <div>
-            <h4 className="title_t">Online Abschluss</h4>
+            <div className="aside_icon_wrapper">
+              <h4 className="title_t">Online Abschluss</h4>
+              <CiLock className="Cilock" />
+            </div>
+
             <div className="line .ine_2 line_3"></div>
           </div>
         </article>
@@ -59,9 +72,7 @@ export default function Aside() {
               </span>
             </div>
             <div className="info">
-              <p className="info_p_2">
-                Persönliche Antragsberatung
-              </p>
+              <p className="info_p_2">Persönliche Antragsberatung</p>
               <p className="info_p_2">
                 <span className="icon_3">
                   <SlArrowRight className="icon_z" />
