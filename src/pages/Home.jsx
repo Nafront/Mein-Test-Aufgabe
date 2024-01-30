@@ -1,21 +1,16 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Home.css";
 import TextBox01 from "../components/TextBox01";
 import Aside from "../components/Aside";
 import Button from "../ui/Button";
 import InputField from "../components/InputField";
 import { useAppContext } from "../components/AppContext";
+import "./Home.css";
 
 export default function Home() {
-  const { setGeburtsdatum, error, setError } = useAppContext();
+  const { setGeburtsdatum, error, setError, formData, setFormData } = useAppContext();
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    day: "",
-    month: "",
-    year: "",
-  });
+
    
     const handleInputChange = (e) => {
       const { name, value } = e.target;

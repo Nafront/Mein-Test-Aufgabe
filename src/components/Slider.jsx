@@ -1,10 +1,12 @@
 import './Slider.css';
+import { useAppContext } from './AppContext';
 
 
 
 
+export default function SliderComponent() {
+  const { sliderValue, setSliderValue } = useAppContext();
 
-export default function SliderComponent({ sliderValue, setSliderValue }) {
   const handleSliderChange = (event) => {
     const value = event.target.value;
     setSliderValue(value);
@@ -23,7 +25,7 @@ export default function SliderComponent({ sliderValue, setSliderValue }) {
   };
 
   return (
-    <div className="field">
+    <div className="">
       <input
         type="range"
         min="4000"

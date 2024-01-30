@@ -1,4 +1,4 @@
-// import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../components/AppContext";
 import { FaChevronLeft } from "react-icons/fa6";
@@ -9,22 +9,22 @@ import Button from "../ui/Button";
 import "./Versicherungs.css";
 
 export default function Versicherungs() {
-  const { geburtsdatum, sliderValue, setSliderValue, setApiResponse } =
+  const { geburtsdatum, sliderValue, setApiResponse } =
     useAppContext();
 
   const navigate = useNavigate();
-  function navigationHandler() {
-    navigate("/");
-  }
 
- 
+  const navigationHandler = () => {
+    navigate("/");
+  };
+
   const handleSubmit = async () => {
     const dataToSend = {
       tarif: {
         name: "sterbegeld",
       },
       versicherungsnehmer: {
-        geburtsdatum: geburtsdatum,
+        geburtsdatum,
         geschlecht: "m",
       },
       vertragsdaten: {
@@ -35,23 +35,16 @@ export default function Versicherungs() {
       },
     };
 
-
     const url = "https://t3a.hannoversche.de/api/v2/taa/quote";
     try {
-      const response = await fetch(url, {
-        method: "POST",
+      const response = await axios.post(url, dataToSend, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(dataToSend),
       });
 
-      if (!response.ok) {
-        throw new Error("Netzwerkantwort war nicht ok.");
-      }
-
-      const responseData = await response.json();
- 
+      // Axios automatically checks for response.ok
+      const responseData = response.data;
 
       // Speichern Sie die API-Antwort im globalen Zustand/Context
       setApiResponse(responseData);
@@ -83,11 +76,13 @@ export default function Versicherungs() {
           </h1>
         </header>
         <div className="range">
-          <div className="sliderValue">
-            <span>{sliderValue} </span>
-          </div>
+            <div className="sliderValue">
+              <span className="value_slider">{sliderValue} </span>
+              <span className="euro">€ </span>
+            </div>
+            <div id="slider_span"></div>
           <div className="field">
-            <Slider sliderValue={sliderValue} setSliderValue={setSliderValue} />
+            <Slider />
           </div>
         </div>
         <TextBox02 />
