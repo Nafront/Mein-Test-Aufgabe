@@ -6,15 +6,15 @@ import "./TarifPage.css";
 import TarifBoxContent from "../components/TarifBoxContent";
 
 export default function TarifPage() {
-  const { apiResponse } = useAppContext();
+  const { apiResponse, setIsLoading } = useAppContext();
   console.log("api : ", apiResponse);
 
   const navigate = useNavigate();
 
+  const monatlicherBeitrag =
+    apiResponse.hauptprodukt?.sterbegeld?.beitraege?.monatlich?.netto;
 
-
- const monatlicherBeitrag =
-   apiResponse.hauptprodukt?.sterbegeld?.beitraege?.monatlich?.netto;
+  setIsLoading(false); // Setzt den Ladezustand zurück, bevor Sie navigieren
 
   function navigationHandler() {
     navigate("/versicherungs");

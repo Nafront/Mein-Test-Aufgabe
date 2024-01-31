@@ -9,7 +9,7 @@ import Button from "../ui/Button";
 import "./Versicherungs.css";
 
 export default function Versicherungs() {
-  const { geburtsdatum, sliderValue, setApiResponse } =
+  const { geburtsdatum, sliderValue, setApiResponse, isLoading, setIsLoading } =
     useAppContext();
 
   const navigate = useNavigate();
@@ -19,6 +19,8 @@ export default function Versicherungs() {
   };
 
   const handleSubmit = async () => {
+    setIsLoading(true); // Ladezustand aktivieren vor dem Datenabruf
+
     const dataToSend = {
       tarif: {
         name: "sterbegeld",
@@ -37,21 +39,25 @@ export default function Versicherungs() {
 
     const url = "https://t3a.hannoversche.de/api/v2/taa/quote";
     try {
-      const response = await axios.post(url, dataToSend, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+          // setTimeout(async () => {
+            const response = await axios.post(url, dataToSend, {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
 
-      // Axios automatically checks for response.ok
-      const responseData = response.data;
+            // Axios automatically checks for response.ok
+            const responseData = response.data;
 
-      // Speichern Sie die API-Antwort im globalen Zustand/Context
-      setApiResponse(responseData);
+            // Speichern Sie die API-Antwort im globalen Zustand/Context
+            setApiResponse(responseData);
 
-      navigate("tarif");
+            navigate("tarif");
+          // });
     } catch (error) {
       console.error("Fehler beim Senden der Daten:", error);
+      setIsLoading(false); // Ladezustand deaktivieren im Fehlerfall
+
       if (error.response) {
         console.error("Serverantwort", error.response.data);
         console.error("Statuscode:", error.response.status);
@@ -60,39 +66,43 @@ export default function Versicherungs() {
       } else {
         console.error("Fehler beim Aufbau des Requests:", error.message);
       }
-    }
+    } 
   };
 
   return (
     <section className="section_v">
       <Aside />
-      <div className="container_v">
-        <div className="icon_wrapper">
-          <FaChevronLeft onClick={navigationHandler} className="back_icon" />
-        </div>
-        <header className="title">
-          <h1>
-            Wie hoch soll die <strong>Versicherung</strong> sein?
-          </h1>
-        </header>
-        <div className="range">
+      {isLoading ? (
+        <div className="custom-loader">Lädt...</div> // Hier können Sie eine detailliertere Ladeanzeige einfügen
+      ) : (
+        <div className="container_v">
+          <div className="icon_wrapper">
+            <FaChevronLeft onClick={navigationHandler} className="back_icon" />
+          </div>
+          <header className="title">
+            <h1>
+              Wie hoch soll die <strong>Versicherung</strong> sein?
+            </h1>
+          </header>
+          <div className="range">
             <div className="sliderValue">
               <span className="value_slider">{sliderValue} </span>
               <span className="euro">€ </span>
             </div>
             <div id="slider_span"></div>
-          <div className="field">
-            <Slider />
+            <div className="field">
+              <Slider />
+            </div>
+          </div>
+          <TextBox02 />
+
+          <div className="container-next">
+            <Button className="next_btn" onClick={handleSubmit}>
+              Weiter
+            </Button>
           </div>
         </div>
-        <TextBox02 />
-
-        <div className="container-next">
-          <Button className="next_btn" onClick={handleSubmit}>
-            Weiter
-          </Button>
-        </div>
-      </div>
+      )}
     </section>
   );
 }

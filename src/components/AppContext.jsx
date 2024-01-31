@@ -20,6 +20,8 @@ export const AppProvider = ({ children }) => {
       year: "",
     });
      const [error, setError] = useState("");
+     const [isLoading, setIsLoading] = useState(false);
+
      
 
 
@@ -38,6 +40,8 @@ export const AppProvider = ({ children }) => {
     setApiResponse,
     monatlicherBeitrag,
     setMonatlicherBeitrag,
+    isLoading,
+    setIsLoading,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -123,7 +123,7 @@ export default function Home() {
         <TextBox01 />
 
         <div className="container-next">
-          <Button to="/versicherungs" className="next_btn" onClick={handleNext}>
+          <Button  className="next_btn" onClick={handleNext}>
             <span>Weiter</span>
           </Button>
         </div>

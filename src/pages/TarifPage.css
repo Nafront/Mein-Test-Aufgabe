@@ -28,7 +28,7 @@
   background-color: #eff0f2;
 }
 .icon_wrapper {
-  margin: 2rem;
+  margin-top: 2rem;
   text-align: start;
 }
 .back_icon {
@@ -44,6 +44,7 @@
   margin: auto;
   font-size: 2rem;
   color: #002d5d;
+  margin-top: 0;
 }
 .header_t h4 {
   margin: auto;
