@@ -1,4 +1,4 @@
-import  { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext } from "react";
 
 const AppContext = createContext();
 
@@ -13,17 +13,14 @@ export const AppProvider = ({ children }) => {
   const [sliderValue, setSliderValue] = useState(4000);
   const [tarif, setTarif] = useState(null);
   const [apiResponse, setApiResponse] = useState({}); // Zustand für die API-Antwort
-   const [monatlicherBeitrag, setMonatlicherBeitrag] = useState("");
-    const [formData, setFormData] = useState({
-      day: "",
-      month: "",
-      year: "",
-    });
-     const [error, setError] = useState("");
-     const [isLoading, setIsLoading] = useState(false);
-
-     
-
+  const [monatlicherBeitrag, setMonatlicherBeitrag] = useState("");
+  const [formData, setFormData] = useState({
+    day: "",
+    month: "",
+    year: "",
+  });
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const value = {
     geburtsdatum,

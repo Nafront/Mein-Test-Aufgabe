@@ -1,14 +1,17 @@
 import './TextBox01.css';
+import avatar from '../assets/avatar.jpg'
+
 
 export default function TextBox01() {
   return (
       <section className="text-box">
         <div className="text-container">
           <img
-            src="https://www.hannoversche.de/stgc/assets/images/melanie.webp?v=1.2.0"
+            // src="https://www.hannoversche.de/stgc/assets/images/melanie.webp?v=1.2.0"
+            src={avatar}
             alt="img"
-            height="60"
-            width="60"
+            height="80"
+            width="80"
             className="avatar"
           />
 

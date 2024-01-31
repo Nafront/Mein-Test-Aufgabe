@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../components/AppContext";
 import { FaChevronLeft } from "react-icons/fa6";
-import Aside from "../components/Aside";
+import AsideTarif from "../components/AsideTarif";
 import "./TarifPage.css";
 import TarifBoxContent from "../components/TarifBoxContent";
 
@@ -23,7 +23,7 @@ export default function TarifPage() {
 
   return (
     <section className="tarif">
-      <Aside />
+      <AsideTarif />
       <div className="container_t">
         <div className="icon_wrapper">
           <FaChevronLeft onClick={navigationHandler} className="back_icon" />

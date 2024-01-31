@@ -75,7 +75,7 @@ export default function Versicherungs() {
     <section className="section_v">
       <Aside />
       {isLoading ? (
-        <div className="custom-loader">Lädt...</div> // Hier können Sie eine detailliertere Ladeanzeige einfügen
+        <div className="custom-loader"></div> // Hier können Sie eine detailliertere Ladeanzeige einfügen
       ) : (
         <div className="container_v">
           <div className="icon_wrapper">
@@ -83,7 +83,7 @@ export default function Versicherungs() {
           </div>
           <header className="title">
             <h1>
-              Wie hoch soll die <strong>Versicherung</strong> sein?
+              Wie hoch soll die <strong>versicherungssumme</strong> sein?
             </h1>
           </header>
           <div className="range">
@@ -98,7 +98,7 @@ export default function Versicherungs() {
           </div>
           <TextBox02 />
 
-          <div className="container-next">
+          <div className="container-next_v">
             <Button className="next_btn" onClick={handleSubmit}>
               Weiter
             </Button>

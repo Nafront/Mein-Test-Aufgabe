@@ -22,7 +22,7 @@
   align-items: center;
   max-width: 100%;
   justify-content: center;
-  /* border: solid green; */
+  margin-top: 1rem;
 }
 .headline h1 {
   display: block;
@@ -37,6 +37,7 @@
 
 .form {
   margin-bottom: 5rem;
+  max-width: 35rem;
 }
 
 .form-container {
@@ -83,6 +84,7 @@
   justify-content: center;
   height: 5rem;
   transition: opacity 0.4s, height 0.2s;
+  margin-top: 6rem;
 }
 
 .error-message {

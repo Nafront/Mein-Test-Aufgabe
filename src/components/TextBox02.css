@@ -31,3 +31,8 @@
   max-width: 500px;
   right: 0;
 }
+
+.box-container .box_container_text {
+  font-size: 10px;
+  border: solid red;
+}

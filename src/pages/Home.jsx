@@ -12,15 +12,24 @@ export default function Home() {
   const navigate = useNavigate();
 
   // Aktualisiert formData im globalen Zustand basierend auf Benutzereingaben
+  // und beschränkt die Eingabelänge für Tag, Monat und Jahr
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    let modifiedValue = value;
+
+    // Beschränken Sie die Länge der Eingabe basierend auf dem Feldnamen
+    if (name === "day" || name === "month") {
+      modifiedValue = value.slice(0, 2); // Erlaubt nur zwei Ziffern
+    } else if (name === "year") {
+      modifiedValue = value.slice(0, 4); // Erlaubt nur vier Ziffern
+    }
+
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: modifiedValue,
     }));
   };
 
-  // Funktion, die beim Klicken auf "Weiter" ausgeführt wird
   const handleNext = () => {
     // Überprüft die Eingaben und navigiert zur nächsten Seite, wenn die Validierung erfolgreich ist
     if (validateInput()) {
@@ -50,7 +59,6 @@ export default function Home() {
 
     // Überprüfung auf ungültige Daten (z.B. 30. Februar)
     // Überprüft, ob das erstellte Datum gültig ist, indem es mit den ursprünglichen Eingaben verglichen wird.
-    // Dies fängt ungültige Daten wie den 30. Februar ab.
     if (
       userBirthdate.getFullYear() !== numericYear ||
       userBirthdate.getMonth() + 1 !== numericMonth ||
@@ -106,6 +114,7 @@ export default function Home() {
                 value={formData.day}
                 onChange={handleInputChange}
                 error={error}
+                maxLength="2"
               />
               <InputField
                 type="number"
@@ -114,6 +123,7 @@ export default function Home() {
                 value={formData.month}
                 onChange={handleInputChange}
                 error={error}
+                maxLength="2"
               />
               <InputField
                 type="number"
@@ -122,6 +132,7 @@ export default function Home() {
                 value={formData.year}
                 onChange={handleInputChange}
                 error={error}
+                maxLength="4"
               />
             </div>
           </div>
