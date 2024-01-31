@@ -1,8 +1,5 @@
-import './Slider.css';
-import { useAppContext } from './AppContext';
-
-
-
+import "./Slider.css";
+import { useAppContext } from "./AppContext";
 
 export default function SliderComponent() {
   const { sliderValue, setSliderValue } = useAppContext();
@@ -24,6 +21,11 @@ export default function SliderComponent() {
     }
   };
 
+  const calculateGradient = () => {
+    const progress = ((sliderValue - 4000) / (15000 - 4000)) * 100;
+    return `linear-gradient(to right, #002D5D ${progress}%, #ccc ${progress}%)`;
+  };
+
   return (
     <div className="">
       <input
@@ -35,6 +37,7 @@ export default function SliderComponent() {
         onChange={handleSliderChange}
         onMouseUp={handleSliderBlur}
         className="custom-slider"
+        style={{ background: calculateGradient() }}
       />
       <div className="zahl_wrapper">
         <span className="value left">4000 €</span>
