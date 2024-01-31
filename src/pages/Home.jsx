@@ -11,6 +11,7 @@ export default function Home() {
     useAppContext();
   const navigate = useNavigate();
 
+  // Aktualisiert formData im globalen Zustand basierend auf Benutzereingaben
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -19,9 +20,12 @@ export default function Home() {
     }));
   };
 
+  // Funktion, die beim Klicken auf "Weiter" ausgeführt wird
   const handleNext = () => {
+    // Überprüft die Eingaben und navigiert zur nächsten Seite, wenn die Validierung erfolgreich ist
     if (validateInput()) {
       const { day, month, year } = formData;
+      // Speichert das Geburtsdatum im globalen Zustand
       setGeburtsdatum(`${day}.${month}.${year}`);
 
       navigate("/versicherungs");
