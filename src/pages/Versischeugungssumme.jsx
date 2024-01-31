@@ -6,7 +6,7 @@ import TextBox02 from "../components/TextBox02";
 import Aside from "../components/Aside";
 import Slider from "../components/Slider";
 import Button from "../ui/Button";
-import "./Versicherungs.css";
+import "./Versischeugungssumme.css";
 
 export default function Versicherungs() {
   const { geburtsdatum, sliderValue, setApiResponse, isLoading, setIsLoading } =
@@ -21,6 +21,7 @@ export default function Versicherungs() {
   const handleSubmit = async () => {
     setIsLoading(true); // Ladezustand aktivieren vor dem Datenabruf
 
+    // Vorbereitung der zu sendenden Daten basierend auf Benutzereingaben und festen Werten
     const dataToSend = {
       tarif: {
         name: "sterbegeld",
@@ -39,21 +40,22 @@ export default function Versicherungs() {
 
     const url = "https://t3a.hannoversche.de/api/v2/taa/quote";
     try {
-          // setTimeout(async () => {
-            const response = await axios.post(url, dataToSend, {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            });
+      // setTimeout(async () => {
+      // Senden der Daten an die API und Warten auf die Antwort
+      const response = await axios.post(url, dataToSend, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-            // Axios automatically checks for response.ok
-            const responseData = response.data;
+      // Axios automatically checks for response.ok
+      const responseData = response.data;
 
-            // Speichern Sie die API-Antwort im globalen Zustand/Context
-            setApiResponse(responseData);
+      // Speichern Sie die API-Antwort im globalen Zustand/Context
+      setApiResponse(responseData);
 
-            navigate("tarif");
-          // });
+      navigate("tarif");
+      // });
     } catch (error) {
       console.error("Fehler beim Senden der Daten:", error);
       setIsLoading(false); // Ladezustand deaktivieren im Fehlerfall
@@ -66,7 +68,7 @@ export default function Versicherungs() {
       } else {
         console.error("Fehler beim Aufbau des Requests:", error.message);
       }
-    } 
+    }
   };
 
   return (

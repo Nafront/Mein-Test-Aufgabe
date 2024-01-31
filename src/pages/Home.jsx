@@ -7,18 +7,17 @@ import { useAppContext } from "../components/AppContext";
 import "./Home.css";
 
 export default function Home() {
-  const { setGeburtsdatum, error, setError, formData, setFormData } = useAppContext();
+  const { setGeburtsdatum, error, setError, formData, setFormData } =
+    useAppContext();
   const navigate = useNavigate();
 
-
-   
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   const handleNext = () => {
     if (validateInput()) {
@@ -29,6 +28,7 @@ export default function Home() {
     }
   };
 
+  // Überprüft, ob eines der Felder leer ist. Wenn ja, wird ein Fehler gesetzt und false zurückgegeben.
   const validateInput = () => {
     const { day, month, year } = formData;
     if (!day || !month || !year) {
@@ -36,12 +36,17 @@ export default function Home() {
       return false;
     }
 
+    // Konvertiert die Eingaben in Zahlen, um sie leichter verarbeiten zu können
     const numericDay = parseInt(day, 10);
     const numericMonth = parseInt(month, 10);
     const numericYear = parseInt(year, 10);
+
+    // Erstellt ein neues Date-Objekt basierend auf den Benutzereingaben
     const userBirthdate = new Date(numericYear, numericMonth - 1, numericDay);
 
     // Überprüfung auf ungültige Daten (z.B. 30. Februar)
+    // Überprüft, ob das erstellte Datum gültig ist, indem es mit den ursprünglichen Eingaben verglichen wird.
+    // Dies fängt ungültige Daten wie den 30. Februar ab.
     if (
       userBirthdate.getFullYear() !== numericYear ||
       userBirthdate.getMonth() + 1 !== numericMonth ||
@@ -51,7 +56,7 @@ export default function Home() {
       return false;
     }
 
-    // Aktuelles Datum erstellen
+    // Erstellt ein aktuelles Datum-Objekt, um das aktuelle Jahr zu erhalten
     const currentDate = new Date();
     // Das Alter des Benutzers berechnen, indem das Geburtsjahr subtrahiert wird
     let userAge = currentDate.getFullYear() - userBirthdate.getFullYear();
@@ -64,11 +69,13 @@ export default function Home() {
       userAge--; // Wenn der Geburtstag dieses Jahr noch nicht war, ein Jahr abziehen
     }
 
+    // Überprüft, ob das Alter des Benutzers zwischen 50 und 80 Jahren liegt
     if (userAge < 50 || userAge > 80) {
       setError("Das Geburtsdatum muss zwischen 50 und 80 Jahren liegen.");
       return false;
     }
 
+    // Wenn alle Überprüfungen erfolgreich waren, wird der Fehlerzustand geleert und true zurückgegeben
     setError("");
     return true;
   };
@@ -123,7 +130,7 @@ export default function Home() {
         <TextBox01 />
 
         <div className="container-next">
-          <Button  className="next_btn" onClick={handleNext}>
+          <Button className="next_btn" onClick={handleNext}>
             <span>Weiter</span>
           </Button>
         </div>

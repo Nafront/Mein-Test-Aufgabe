@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import RootLayout from "./pages/Root";
-import Versicherungs from "./pages/Versicherungs";
+import Versicherungs from "./pages/Versischeugungssumme";
 import TarifPage from "./pages/TarifPage";
 
 function App() {
