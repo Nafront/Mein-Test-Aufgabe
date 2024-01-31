@@ -71,6 +71,11 @@ export default function Versicherungs() {
     }
   };
 
+// Hilfsfunktion zur Formatierung von Zahlen
+function formatNumberWithDot(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
   return (
     <section className="section_v">
       <Aside />
@@ -88,7 +93,9 @@ export default function Versicherungs() {
           </header>
           <div className="range">
             <div className="sliderValue">
-              <span className="value_slider">{sliderValue} </span>
+              <span className="value_slider">
+                {formatNumberWithDot(sliderValue)}{" "}
+              </span>
               <span className="euro">€ </span>
             </div>
             <div id="slider_span"></div>

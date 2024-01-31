@@ -15,6 +15,11 @@ export default function TarifPage() {
   const monatlicherBeitrag =
     apiResponse.hauptprodukt?.sterbegeld?.beitraege?.monatlich?.netto;
 
+  // Hilfsfunktion zur Formatierung von Zahlen
+  function formatNumberWithDot(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
   setIsLoading(false); // Setzt den Ladezustand zurück, bevor Sie navigieren
 
   function navigationHandler() {
@@ -30,7 +35,9 @@ export default function TarifPage() {
         </div>
         <header className="header_t">
           <h1 className="tarif_beitrag">
-            {monatlicherBeitrag ? `${monatlicherBeitrag} €` : ""}
+            {monatlicherBeitrag
+              ? `${formatNumberWithDot(monatlicherBeitrag)} €`
+              : ""}
           </h1>
           <h4>Monatlich</h4>
         </header>
