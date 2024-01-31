@@ -25,12 +25,6 @@
 }
 
 
-.input:focus-visible,
-.input:focus,
-.input:active {
-      background-color: #DAE1EC;
-}
-
 .input-error {
   background-color: #FFDDD6; 
   border: solid #fe8074;
